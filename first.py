@@ -1,32 +1,38 @@
-from tkinter import *
-root = Tk()
+import tkinter as tk
 
-# 기본설정
-root.title('InstaPy')
-root.geometry("640x400+100+100")
+class Application(tk.Frame):
+    def __init__(self, master=None):
+        super().__init__(master)
+        self.master = master
+        self.pack()
+        self.create_widgets()
 
-#username, password
-Label(root, text="username").grid(row=0)
-user_name = Entry(root).grid(row=0, column=1)
-Label(root, text="password").grid(row=1)
-password = Entry(root).grid(row=1, column=1)
+    def create_widgets(self):
+        self.hi_there = tk.Button(self)
+        self.hi_there["text"] = "Hello World\n(click me)"
+        self.hi_there["command"] = self.say_hi
+        self.hi_there.pack(side="top")
+        
+        # self.test = tk.Entry(self)
+        # self.test
+        string = tk.StringVar()
+        self.textbox = tk.Entry(self, width=20, textvariable=string)
+        self.textbox.pack()
+        self.action = tk.Button(self, text="click Me", command=self.clickMe)
+        self.action.pack()
 
-Label(root, text="target Hashtag").grid(row=3)
-hashtag = Entry(root).grid(row=3, column=1, pady=10)
+        self.quit = tk.Button(self, text="QUIT", fg="red",
+                              command=self.master.destroy)
+        self.quit.pack(side="bottom")
+
+    def say_hi(self):
+        print("hi there, everyone!")
+    
+    def clickMe(self):
+        self.messagebox.showinfo("Button Clicked", str.get())
 
 
-root.mainloop()
 
-# import tkinter as tk
-
-# master = tk.Tk()
-# tk.Label(master, text="First Name").grid(row=0)
-# tk.Label(master, text="Last Name").grid(row=1)
-
-# e1 = tk.Entry(master)
-# e2 = tk.Entry(master)
-
-# e1.grid(row=0, column=1)
-# e2.grid(row=1, column=1)
-
-# master.mainloop()
+root = tk.Tk()
+app = Application(master=root)
+app.mainloop()
