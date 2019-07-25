@@ -1,4 +1,4 @@
-# coding=<UTF-8>
+# coding=<utf-8>
 
 import sys
 import tkinter
@@ -452,13 +452,9 @@ class SimpleApp(tkinter.Tk):
         try:
             print(1)
             self.session.set_quota_supervisor(enabled=True, sleepyhead=True, sleep_after=["likes", "comments_d", "follows", "unfollows", "server_calls_h"], stochastic_flow=True, notify_me=True,
-                # like 시간단위 최대 값, 하루단위 최대 값.
                 peak_likes=(int(self.likeHourLimitSpinbox.get()), int(self.likeDayLimitSpinbox.get())),
-                # 팔로우 시간단위 최대 값, 하루단위 최대값
                 peak_follows=(int(self.followHourLimitSpinbox.get()), int(self.followDayLimitSpinbox.get())),
-                # 시간단위 언팔 최대 값, 하루단위 언팔 최대값
                 peak_unfollows=(int(self.unfollowHourLimitSpinbox.get()), int(self.unfollowDayLimitSpinbox.get())),
-                # 시간당 서버콜 제한, 하루 콜 제한
                 peak_server_calls=(int(self.serverHourLimitSpinbox.get()), int(self.serverDayLimitSpinbox.get())))
         except AttributeError:
             tkinter.messagebox.showinfo("warning", 'Please Enter UserInformation')
@@ -471,9 +467,7 @@ class SimpleApp(tkinter.Tk):
     def hashTag_Target_LikeNComment(self):
         try:
             self.session.set_ignore_if_contains(self.registered_words)
-            # follow 설정
             self.session.set_do_follow(True, percentage=100)
-            # 설정된 comment내에서 무작위로 comment 달기
             self.session.set_comments(self.registered_comments)
             self.session.set_do_comment(enabled=True, percentage=80)
             self.session.set_user_interact(amount=3, randomize=True, percentage=100)
